@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Angela Amistad · ATP Portfolio | MS Office, C++ & Web</title>
+  <!-- Font Awesome 6 for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: #fdfaf7;
+      color: #3b2e24;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Brown & warm color palette */
+    :root {
+      --primary: #8b5a2b;
+      --primary-light: #c69c6d;
+      --secondary: #b1885c;
+      --accent: #d9b382;
+      --dark: #4a3724;
+      --gray: #6b5a4a;
+      --light-bg: #f7f0e6;
+      --card: #ffffff;
+      --shadow: 0 25px 45px rgba(90, 60, 30, 0.08);
+      --transition: all 0.3s ease;
+    }
+
+    /* navigation */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #8b5a2b, #c69c6d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--dark);
+      transition: var(--transition);
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: var(--primary);
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 8px 20px rgba(139, 90, 43, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 12px 25px rgba(139, 90, 43, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: #6b4226;
+      transform: translateY(-3px);
+      box-shadow: 0 18px 30px rgba(139, 90, 43, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* canva link styling */
+    .canva-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #8b5a2b, #b87a44);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(139, 90, 43, 0.25);
+    }
+
+    .canva-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(139, 90, 43, 0.35);
+      background: linear-gradient(135deg, #6b4226, #9b6a3e);
+    }
+
+    /* landing section */
+    .landing {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 60px 0;
+      gap: 40px;
+    }
+
+    .landing-content {
+      flex: 1 1 400px;
+    }
+
+    .landing-content h1 {
+      font-size: 3.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #4a3724;
+    }
+
+    .highlight {
+      background: linear-gradient(to right, #8b5a2b, #c69c6d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      margin: 20px 0 30px;
+      color: var(--gray);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 25px;
+    }
+
+    /* animated profile picture container */
+    .photo-frame {
+      flex: 1 1 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .profile-pic-wrapper {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #d9b382, #8b5a2b);
+      padding: 6px;
+      animation: floatRotate 5s infinite alternate ease-in-out;
+      box-shadow: 0 30px 45px rgba(139, 90, 43, 0.25);
+    }
+
+    @keyframes floatRotate {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-12px) rotate(2deg); }
+    }
+
+    .profile-pic-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid white;
+      background: #f3e1c7;
+      display: block;
+    }
+
+    /* section titles */
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 50px;
+      text-align: center;
+      color: #4a3724;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: var(--primary-light);
+      margin: 15px auto 0;
+      border-radius: 5px;
+    }
+
+    /* about */
+    .about-grid {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      align-items: center;
+      background: var(--card);
+      padding: 40px;
+      border-radius: 40px;
+      box-shadow: var(--shadow);
+      border: 1px solid #ede3d3;
+    }
+
+    .about-text {
+      flex: 2 1 300px;
+    }
+
+    .about-text p {
+      margin-bottom: 18px;
+      font-size: 1.05rem;
+    }
+
+    /* skills */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .skill-card {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+      border: 1px solid #f0e5d8;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 45px rgba(139, 90, 43, 0.12);
+    }
+
+    .skill-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .skill-card h3 {
+      margin-bottom: 12px;
+      color: #4a3724;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .tag {
+      background: #f7f0e6;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #5c3f2b;
+    }
+
+    /* my work */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #ede0cf;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 35px 50px rgba(90, 60, 30, 0.15);
+    }
+
+    .project-img {
+      height: 200px;
+      background: #f7ede0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.2rem;
+      color: #8b5a2b;
+    }
+
+    .project-info {
+      padding: 24px;
+    }
+
+    .project-info h3 {
+      margin-bottom: 10px;
+      color: #3b2e24;
+    }
+
+    .date {
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* contact */
+    .contact-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      background: white;
+      border-radius: 40px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      border: 1px solid #ede3d3;
+      justify-content: center;
+    }
+
+    .contact-details {
+      flex: 1 1 280px;
+      max-width: 500px;
+    }
+
+    .contact-details p {
+      margin: 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.05rem;
+    }
+
+    .contact-details i {
+      width: 28px;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: var(--gray);
+      border-top: 1px solid #ede3d3;
+      margin-top: 30px;
+    }
+
+    /* fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .landing {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+      .btn-group {
+        justify-content: center;
+      }
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .landing-content h1 {
+        font-size: 2.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- header nav -->
+    <nav class="navbar">
+      <div class="logo">&#60;AA /&#62;</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#work">My Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Landing Page -->
+    <section id="home" class="landing fade-in">
+      <div class="landing-content">
+        <h1>Angela <span class="highlight">Amistad</span></h1>
+        <p class="subtitle">
+          ATP trainee at Lyceum of Aparri · Training MS Office,Basic C++ coding, HTML/CSS & creative problem-solving.
+        </p>
+        <div class="btn-group">
+          <a href="https://www.canva.com/design/DAHJ1BrpLb8/HM8iLbAdxfQRW3epvQlYVQ/edit" target="_blank" class="canva-link" id="canvaResumeLink">
+            <i class="fab fa-canva"></i> View Resume on Canva
+          </a>
+          <a href="#work" class="btn btn-outline"><i class="fas fa-briefcase"></i> ATP Projects</a>
+        </div>
+      </div>
+      <div class="photo-frame">
+        <div class="profile-pic-wrapper">
+          <img src="formal.png" alt="Angela Amistad professional portrait">
+        </div>
+      </div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about" class="fade-in" style="margin: 80px 0;">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p><strong>I'm Angela Amistad</strong>, currently undergoing my Alternative Training Program (ATP) at <strong>Lyceum of Aparri</strong> from February to June 2026. This journey sharpened my skills in document creation, data analysis, algorithmic thinking, and web development.</p>
+          <p>My ATP curriculum focused on real-world productivity tools: <strong>Microsoft Word, Excel, PowerPoint</strong>, the fundamentals of <strong>C++ programming</strong>, and <strong>basic web development (HTML & CSS)</strong>. I learned how to design professional reports, automate spreadsheets with formulas, build engaging presentations, write clean C++ code for logical problem-solving, and create responsive web pages.</p>
+          <p>I thrive at the intersection of technical precision and creative expression. Whether it's formatting a business document, debugging a C++ loop, or styling a website with CSS, I bring curiosity and dedication. My goal is to become a versatile IT professional who bridges office productivity, software development, and front-end design.</p>
+          <p><em>"Every expert was once a beginner — my ATP training proves that progress is beautiful."</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="fade-in" style="margin: 80px 0;">
+      <h2 class="section-title">Skills & Learned ATP</h2>
+      <div class="skills-container">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-file-word"></i></div>
+          <h3>Microsoft Word</h3>
+          <p>Document formatting, styles, tables, mail merge, and professional report creation for ATP assignments.</p>
+          <div class="tags"><span class="tag">Layout</span><span class="tag">Mail Merge</span><span class="tag">Templates</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-file-excel"></i></div>
+          <h3>Microsoft Excel</h3>
+          <p>Formulas, pivot tables, charts, data validation, and basic macros to analyze student data projects.</p>
+          <div class="tags"><span class="tag">Formulas</span><span class="tag">PivotTables</span><span class="tag">Dashboards</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-chalkboard-user"></i></div>
+          <h3>PowerPoint</h3>
+          <p>Engaging slide decks, animations, transitions, and visual storytelling for academic presentations.</p>
+          <div class="tags"><span class="tag">Slide Design</span><span class="tag">Animations</span><span class="tag">Infographics</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-code"></i></div>
+          <h3>Basic C++ Programming</h3>
+          <p>Variables, Data types, and problem-solving fundamentals learned during ATP coding modules.</p>
+          <div class="tags"><span class="tag">C++</span><span class="tag">Debugging</span><span class="tag">Logic</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fab fa-html5"></i></div>
+          <h3>Web Development (HTML/CSS)</h3>
+          <p>Creating responsive web pages (AI) styling with CSS, building layouts, and understanding front-end basics.</p>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Responsive</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- My Work -->
+    <section id="work" class="fade-in" style="margin: 80px 0;">
+      <h2 class="section-title">My Work</h2>
+      <div class="work-grid" id="projectContainer">
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="fade-in" style="margin: 80px 0;">
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="contact-wrapper">
+        <div class="contact-details">
+          <p><i class="fas fa-envelope"></i> angelaamistad2@gmail.com</p>
+          <p><i class="fas fa-phone"></i> +639350618181</p>
+        </div>
+      </div>
+    </section>
+    
+    <footer>
+      <p>© 2026 Angela Amistad · ATP Lyceum of Aparri Personal Portfolio</p>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === "#") return;
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // Fade-in Intersection Observer
+      const fadeElements = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.2 });
+      fadeElements.forEach(el => observer.observe(el));
+
+      
+      // Render projects
+      const container = document.getElementById('projectContainer');
+      if (container) {
+        container.innerHTML = projects.map(p => `
+          <div class="project-card">
+            <div class="project-img"><i class="${p.icon}"></i></div>
+            <div class="project-info">
+              <h3>${p.title}</h3>
+              <p>${p.desc}</p>
+              <p class="date"><i class="far fa-calendar-alt"></i> ${p.date}</p>
+              <div class="tags">${p.tech.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Initial visibility for already visible sections
+      window.addEventListener('load', () => {
+        fadeElements.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100) {
+            el.classList.add('visible');
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
